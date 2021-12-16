@@ -25,7 +25,7 @@ GrowModAPP <- function(){
     # titlePanel("Logistic model"), #add title
 
     # Set sliders to be on the side
-    sidebarLayout(
+    shiny::sidebarLayout(
       shiny::sidebarPanel(
         # Add slider for initial disease and set parameters
         shiny::sliderInput("initial", slider_disease,
@@ -47,7 +47,7 @@ GrowModAPP <- function(){
       # Main panel for displaying outputs ----
       shiny::mainPanel(
         # Output:
-        plotOutput("myplot")
+        shiny::plotOutput("myplot")
       )
     )
   )
@@ -132,7 +132,7 @@ GrowModAPP <- function(){
           # dta <-  dta[- which(dta$model== "Exponential"&dta$dis > .9999999),]
 
           plot_dis <-
-            ggplot(dta) +
+            ggplot2::ggplot(dta) +
             geom_line(aes(time, dis, color = model)) +
             ylim(0, 1) +
             theme_bw() +
@@ -162,7 +162,7 @@ GrowModAPP <- function(){
           }
 
         })
-      observeEvent(input$go, {
+      ggplot2::observeEvent(input$go, {
         screenshot(
           # selector="#myplot",
           filename = "combined"
