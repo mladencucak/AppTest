@@ -1,7 +1,4 @@
-library("ggplot2")
-library("shinyscreenshot")
-library("shiny")
-library("deSolve")
+
 
 ###########################################################
 ### Logistic model app
@@ -133,7 +130,7 @@ GrowModAPP <- function(){
 
           plot_dis <-
             ggplot2::ggplot(dta) +
-            ggplot2::geom_line(aes(time, dis, color = model)) +
+            ggplot2::geom_line(ggplot2::aes(time, dis, color = model)) +
             ggplot2::ylim(0, 1) +
             ggplot2::theme_bw() +
             ggplot2::scale_y_continuous(
