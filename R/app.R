@@ -133,28 +133,28 @@ GrowModAPP <- function(){
 
           plot_dis <-
             ggplot2::ggplot(dta) +
-            geom_line(aes(time, dis, color = model)) +
-            ylim(0, 1) +
-            theme_bw() +
-            scale_y_continuous(
+            ggplot2::geom_line(aes(time, dis, color = model)) +
+            ggplot2::ylim(0, 1) +
+            ggplot2::theme_bw() +
+            ggplot2::scale_y_continuous(
               limits = c(0, 1),
               expand = c(0, 0),
               breaks = seq(0, 1, 0.2),
               name = "Disease"
             ) +
-            scale_x_continuous(
+            ggplot2::scale_x_continuous(
               expand = c(0, 0),
               breaks = seq(0, 80, 20),
               name = "Time"
             ) +
-            theme(legend.position = "bottom",
+            ggplot2::theme(legend.position = "bottom",
                   text = element_text(size = 12))
 
           # plot_dis
           if (input$plot_choice == "Separate") {
             plot_dis +
-              facet_wrap( ~ model) +
-              theme(legend.position = "none")
+              ggplot2::facet_wrap( ~ model) +
+              ggplot2::theme(legend.position = "none")
           }
 
           if (input$plot_choice == "Together") {
@@ -162,8 +162,8 @@ GrowModAPP <- function(){
           }
 
         })
-      shinyscreenshot::observeEvent(input$go, {
-        screenshot(
+      shiny::observeEvent(input$go, {
+        shinyscreenshot::screenshot(
           # selector="#myplot",
           filename = "combined"
         )
