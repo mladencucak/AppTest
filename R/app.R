@@ -20,32 +20,32 @@ GrowModAPP <- function(){
   default_r <- .005
 
   # Define UI for slider demo app
-  ui <- fluidPage(
+  ui <- shiny::fluidPage(
 
     # titlePanel("Logistic model"), #add title
 
     # Set sliders to be on the side
     sidebarLayout(
-      sidebarPanel(
+      shiny::sidebarPanel(
         # Add slider for initial disease and set parameters
-        sliderInput("initial", slider_disease,
+        shiny::sliderInput("initial", slider_disease,
                     min = min_slider_yo, max = max_slider_yo, value = default_yo
         ),
-        sliderInput("rate", slider_rate,
+        shiny::sliderInput("rate", slider_rate,
                     min = min_slider_r, max = max_slider_r, value = default_r
         ),
 
-        radioButtons("plot_choice",
+        shiny::radioButtons("plot_choice",
                      label = "Plot",
                      choices = c("Together", "Separate"),
                      selected = c("Together"),
                      inline = TRUE),
-        actionButton("go", "Take a screenshot")
+        shiny::actionButton("go", "Take a screenshot")
 
 
       ),
       # Main panel for displaying outputs ----
-      mainPanel(
+      shiny::mainPanel(
         # Output:
         plotOutput("myplot")
       )
@@ -56,7 +56,7 @@ GrowModAPP <- function(){
   server <-
     function(input, output, session) {
       output$myplot <-
-        renderPlot({
+        shiny::renderPlot({
           r = input$rate
           time <-  seq(0, 80, by = 2)
 
@@ -172,7 +172,7 @@ GrowModAPP <- function(){
 
     }
   # Create Shiny app
-  shinyApp(ui = ui, server = server)
+  shiny::shinyApp(ui = ui, server = server)
 
 }
 
