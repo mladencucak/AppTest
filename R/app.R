@@ -145,7 +145,7 @@ GrowModAPP <- function(){
               name = "Time"
             ) +
             ggplot2::theme(legend.position = "bottom",
-                  text = element_text(size = 12))
+                  text = ggplot2::element_text(size = 12))
 
           # plot_dis
           if (input$plot_choice == "Separate") {
