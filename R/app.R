@@ -162,7 +162,7 @@ GrowModAPP <- function(){
           }
 
         })
-      ggplot2::observeEvent(input$go, {
+      shinyscreenshot::observeEvent(input$go, {
         screenshot(
           # selector="#myplot",
           filename = "combined"
