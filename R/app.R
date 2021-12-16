@@ -1,6 +1,8 @@
 library("ggplot2")
 library("shinyscreenshot")
 library("shiny")
+library("deSolve")
+
 ###########################################################
 ### Logistic model app
 ###########################################################
