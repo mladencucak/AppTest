@@ -316,7 +316,7 @@ HLIRApp <- function(){
         filename = "HILR_results.csv",
         content = function(file){
 
-          write.csv( pivot_wider(datasetInput(),names_from = var, values_from = value), file)
+          write.csv(tidyr::pivot_wider(datasetInput(),names_from = var, values_from = value), file)
         })
   }
 

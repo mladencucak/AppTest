@@ -3,7 +3,7 @@
  To install
 ```{r }
 devtools::install_github("mladencucak/AppTest", force = T)
-library(AppTest)
+AppTest::GrowModAPP()
 AppTest::GrowModAPP()
 ```
 Rtools needs to be installed on Windows machine. 
