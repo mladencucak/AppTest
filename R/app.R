@@ -270,7 +270,7 @@ HLIRApp <- function(){
           shiny::tabPanel(title = "Plots", shiny::plotOutput("plot1")),
 
           shiny::tabPanel(title = "Data",
-                          shiny::DTOutput("table1"),
+                          DT::DTOutput("table1"),
                           shiny::downloadButton("downloadData", "Download Results")
           )
 
