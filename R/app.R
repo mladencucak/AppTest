@@ -311,7 +311,7 @@ HLIRApp <- function(){
   }
 
   # Run the application
-  shinyApp(ui = ui, server = server)
+  shiny::shinyApp(ui = ui, server = server)
 
 }
 
