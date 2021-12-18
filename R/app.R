@@ -230,22 +230,22 @@ HLIRApp <- function(){
       ggplot2::guides(colour = ggplot2::guide_legend(title.position = "top", title.hjust = 0.1)) }
 
   # User interface
-  ui <- fluidPage(
+  ui <- shiny::fluidPage(
 
     theme = shinythemes::shinytheme("readable"),
     # Application title
-    titlePanel("HLIR (SEIR) model"),
+    shiny::titlePanel("HLIR (SEIR) model"),
 
     # Sidebar with a shiny::slider input for number of bins
-    sidebarLayout(
-      sidebarPanel(
-        numericInput(inputId = "inf", label = "# Infectious individuals",
+    shiny::sidebarLayout(
+      shiny::sidebarPanel(
+        shiny::numericInput(inputId = "inf", label = "# Infectious individuals",
                      min = 0, max = 999, value = 1),
 
-        numericInput(inputId = "lat", label = "# Latently infected individuals",
+        shiny::numericInput(inputId = "lat", label = "# Latently infected individuals",
                      min = 0, max = 999, value = 0),
 
-        numericInput(inputId = "rem", label = "# Removed individuals",
+        shiny::numericInput(inputId = "rem", label = "# Removed individuals",
                      min = 0, max = 999, value = 0),
 
 
@@ -302,7 +302,7 @@ HLIRApp <- function(){
 
 
     output$downloadData <-
-      downloadHandler(
+      shiny::downloadHandler(
         filename = "HILR_results.csv",
         content = function(file){
 
