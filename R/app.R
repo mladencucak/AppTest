@@ -159,6 +159,8 @@ GrowModAPP <- function(){
           }
 
         })
+
+
       shiny::observeEvent(input$go, {
         shinyscreenshot::screenshot(
           # selector="#myplot",
@@ -174,6 +176,9 @@ GrowModAPP <- function(){
 }
 
 
+###########################################################
+### HLIR app
+###########################################################
 
 HLIRApp <- function(){
 
@@ -268,7 +273,8 @@ HLIRApp <- function(){
         shiny::sliderInput(inputId = "time", label = "Simulation length",
                            min = 0, max = 1500, value = 450, step = 50),
 
-        shiny::actionButton("refresh", label = "RUN")
+        shiny::actionButton("refresh", label = "RUN"),
+        shiny::actionButton("go", "Take a screenshot")
       ),
 
       shiny::mainPanel(
@@ -318,6 +324,13 @@ HLIRApp <- function(){
 
           write.csv(tidyr::pivot_wider(datasetInput(),names_from = var, values_from = value), file)
         })
+
+    shiny::observeEvent(input$go, {
+      shinyscreenshot::screenshot(
+        selector="#plot1",
+        filename = "HLIR_plot"
+      )
+    })
   }
 
   # Run the application
