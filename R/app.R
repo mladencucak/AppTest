@@ -177,6 +177,8 @@ GrowModAPP <- function(){
 
 
 HLIRApp <- function(){
+  require("dplyr")
+
   HLIR_func<-function(times,y,parms) {
     dH<- -parms["beta"]*y["H"]*y["I"]
     dL<- parms["beta"]*y["H"]*y["I"] - parms["omega"]*y["L"]
@@ -190,12 +192,12 @@ HLIRApp <- function(){
     state<-c("H"=1000 - (lat+inf+rem), "L"=lat, "I"=inf, "R"=rem)
     times<-seq(0,time,1)
 
-    deSolve::lsoda(y=state, times=times, func=HLIR_func, parms=parms)%>>%
-      as.data.frame(.)%>>%
-      mutate(To_I = L+I+R)%>>%
-      tidyr::pivot_longer(cols = -time, names_to = "var", values_to = "value")%>>%
+    deSolve::lsoda(y=state, times=times, func=HLIR_func, parms=parms) %>%
+      as.data.frame(.) %>%
+      mutate(To_I = L+I+R) %>%
+      tidyr::pivot_longer(cols = -time, names_to = "var", values_to = "value") %>%
       mutate(var = factor(var, levels = c("H",  "L", "I","R", "To_I"),
-                          labels = c("Healthy", "Latently", "Infectious",  "Removed", "Total Infected")))%>>%
+                          labels = c("Healthy", "Latently", "Infectious",  "Removed", "Total Infected"))) %>%
       rename("Time" = time)             }
 
 
@@ -294,9 +296,9 @@ HLIRApp <- function(){
 
     output$table1 <- DT::renderDT({(
       datasetInput()%>%
-        tidyr::pivot_wider(names_from = var, values_from = value))%>>%
+        tidyr::pivot_wider(names_from = var, values_from = value)) %>%
         DT::datatable(rownames = FALSE,
-                      options = list(searching=FALSE,pageLength = 20))%>>%
+                      options = list(searching=FALSE,pageLength = 20)) %>%
         DT::formatRound( columns = c(2:6), digits= 0)
     })
 
