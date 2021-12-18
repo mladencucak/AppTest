@@ -175,7 +175,6 @@ GrowModAPP <- function(){
 
 
 
-
 HLIRApp <- function(){
 
   require("dplyr")
@@ -193,13 +192,24 @@ HLIRApp <- function(){
     state<-c("H"=1000 - (lat+inf+rem), "L"=lat, "I"=inf, "R"=rem)
     times<-seq(0,time,1)
 
-    deSolve::lsoda(y=state, times=times, func=HLIR_func, parms=parms) %>%
-      as.data.frame(.) %>%
-      mutate(To_I = L+I+R) %>%
-      tidyr::pivot_longer(cols = -time, names_to = "var", values_to = "value") %>%
-      mutate(var = factor(var, levels = c("H",  "L", "I","R", "To_I"),
-                          labels = c("Healthy", "Latently", "Infectious",  "Removed", "Total Infected"))) %>%
-      rename("Time" = time)             }
+
+    dt <- deSolve::lsoda(y=state, times=times, func=HLIR_func, parms=parms)
+    dt <- as.data.frame(dt)
+    dt <- mutate(dt, To_I = L+I+R)
+    dt <- tidyr::pivot_longer(dt, cols = -time, names_to = "var", values_to = "value")
+    dt <- mutate(dt, var = factor(dt, var, levels = c("H",  "L", "I","R", "To_I"),
+                                         labels = c("Healthy", "Latently", "Infectious",  "Removed", "Total Infected")))
+    dt <- rename(dt,"Time" = time)
+    return(dt)
+
+    # deSolve::lsoda(y=state, times=times, func=HLIR_func, parms=parms) %>%
+    #   as.data.frame(.) %>%
+    #   mutate(To_I = L+I+R) %>%
+    #   tidyr::pivot_longer(cols = -time, names_to = "var", values_to = "value") %>%
+    #   mutate(var = factor(var, levels = c("H",  "L", "I","R", "To_I"),
+    #                       labels = c("Healthy", "Latently", "Infectious",  "Removed", "Total Infected"))) %>%
+    #   rename("Time" = time)
+    }
 
 
   HLIR_plot = function(data){
