@@ -164,7 +164,7 @@ GrowModAPP <- function(){
       shiny::observeEvent(input$go, {
         shinyscreenshot::screenshot(
           # selector="#myplot",
-          filename = "combined"
+          filename = "Growth_models_plot"
         )
       })
 
