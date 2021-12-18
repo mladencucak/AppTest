@@ -232,7 +232,7 @@ HLIRApp <- function(){
   # User interface
   ui <- fluidPage(
 
-    theme = shinytheme("readable"),
+    theme = shinythemes::shinytheme("readable"),
     # Application title
     titlePanel("HLIR (SEIR) model"),
 
