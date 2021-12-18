@@ -1,9 +1,9 @@
 # AppTest
  Start of PDE package  
- To install
+ To install run following:
 ```{r }
-devtools::install_github("mladencucak/AppTest", force = T)
+devtools::install_github("mladencucak/AppTest")
 AppTest::GrowModAPP()
-AppTest::GrowModAPP()
+AppTest::HLIRApp()
 ```
 Rtools needs to be installed on Windows machine. 
