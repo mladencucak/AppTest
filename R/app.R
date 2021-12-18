@@ -249,13 +249,13 @@ HLIRApp <- function(){
                      min = 0, max = 999, value = 0),
 
 
-        shiny::sliderInput(inputId = "beta", label = HTML("Infection rate (&beta;)"),
+        shiny::sliderInput(inputId = "beta", label = shiny::HTML("Infection rate (&beta;)"),
                            min = 0.00000, max = 0.001, value = 0.00015, step = 0.00001),
 
-        shiny::sliderInput(inputId = "omega", label = HTML("Latently infected to infectious (&omega;)"),
+        shiny::sliderInput(inputId = "omega", label = shiny::HTML("Latently infected to infectious (&omega;)"),
                            min = 0, max = 1, value = 0.1, step = 0.05),
 
-        shiny::sliderInput(inputId = "mu", label = HTML("Infectious to removed (&mu;)"),
+        shiny::sliderInput(inputId = "mu", label = shiny::HTML("Infectious to removed (&mu;)"),
                            min = 0, max = 1, value = 0.1, step = 0.05),
 
 
@@ -267,7 +267,7 @@ HLIRApp <- function(){
 
       shiny::mainPanel(
         shiny::tabsetPanel(
-          shiny::tabPanel(title = "Plots", plotOutput("plot1")),
+          shiny::tabPanel(title = "Plots", shiny::plotOutput("plot1")),
 
           shiny::tabPanel(title = "Data",
                           shiny::DTOutput("table1"),
