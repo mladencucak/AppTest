@@ -299,11 +299,15 @@ HLIRApp <- function(){
     })
 
     output$table1 <- DT::renderDT({(
-      datasetInput()%>%
-        tidyr::pivot_wider(names_from = var, values_from = value)) %>%
-        DT::datatable(rownames = FALSE,
-                      options = list(searching=FALSE,pageLength = 20)) %>%
-        DT::formatRound( columns = c(2:6), digits= 0)
+      dt <-
+        tidyr::pivot_wider(datasetInput(),
+                           names_from = var,
+                           values_from = value))
+      dt <- DT::datatable(dt,
+                           rownames = FALSE,
+                           options = list(searching = FALSE, pageLength = 20))
+
+      dt <- DT::formatRound(dt, columns = c(2:6), digits = 0)
     })
 
 
@@ -312,7 +316,7 @@ HLIRApp <- function(){
         filename = "HILR_results.csv",
         content = function(file){
 
-          write.csv(datasetInput()%>% pivot_wider(names_from = var, values_from = value), file)
+          write.csv( pivot_wider(datasetInput(),names_from = var, values_from = value), file)
         })
   }
 
