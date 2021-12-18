@@ -195,11 +195,11 @@ HLIRApp <- function(){
 
     dt <- deSolve::lsoda(y=state, times=times, func=HLIR_func, parms=parms)
     dt <- as.data.frame(dt)
-    dt <- mutate(dt, To_I = L+I+R)
+    dt <- dplyr::mutate(dt, To_I = L+I+R)
     dt <- tidyr::pivot_longer(dt, cols = -time, names_to = "var", values_to = "value")
-    dt <- mutate(dt, var = factor( var, levels = c("H",  "L", "I","R", "To_I"),
+    dt <- dplyr::mutate(dt, var = factor( var, levels = c("H",  "L", "I","R", "To_I"),
                                          labels = c("Healthy", "Latently", "Infectious",  "Removed", "Total Infected")))
-    dt <- rename(dt,"Time" = time)
+    dt <- dplyr::rename(dt,"Time" = time)
     return(dt)
 
     }
