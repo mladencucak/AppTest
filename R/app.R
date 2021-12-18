@@ -177,6 +177,7 @@ GrowModAPP <- function(){
 
 
 HLIRApp <- function(){
+
   require("dplyr")
 
   HLIR_func<-function(times,y,parms) {
